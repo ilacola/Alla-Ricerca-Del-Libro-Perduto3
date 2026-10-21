@@ -15,3 +15,20 @@
     -fx-font-family: "Georgia";
 }
 
+.button {
+    -fx-background-color: bordeaux;
+    -fx-text-fill: carta;
+    -fx-border-color: bordeaux;
+    -fx-border-width: 2px;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-min-width: 200px;
+    -fx-font-family: "Georgia";
+    -fx-font-size: 18px;
+}
+
+.button:hover {
+    -fx-background-color: oro;
+    -fx-border-color: oro;
+}
+

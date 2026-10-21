@@ -1,20 +1,16 @@
 package it.unicam.cs.mpgc.rpg129638;
 
+import it.unicam.cs.mpgc.rpg129638.view.MenuIniziale;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        Label titolo = new Label("Alla ricerca del libro perduto");
-        titolo.getStyleClass().add("titolo");
-
-        StackPane radice = new StackPane(titolo);
-        Scene scena = new Scene(radice, 800, 600);
+        MenuIniziale menu = new MenuIniziale();
+        Scene scena = new Scene(menu, 800, 600);
         scena.getStylesheets().add(
                 getClass().getResource("/style.css").toExternalForm());
 
