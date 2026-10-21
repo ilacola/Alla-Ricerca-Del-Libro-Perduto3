@@ -1,0 +1,17 @@
+/*è la classe che JavaFX assegna da solo al contenitore principale*/
+.root {
+    legno: #2b1d14;
+    carta: #f1e3c4;
+    oro: #c9a24a;
+    inchiostro: #3a2a1a;
+    bordeaux: #6b2d2d;
+
+    -fx-background-color: legno;
+}
+
+.titolo { /*nome che inventiamo noi*/
+    -fx-text-fill: oro ;
+    -fx-font-size: 36px;
+    -fx-font-family: "Georgia";
+}
+
