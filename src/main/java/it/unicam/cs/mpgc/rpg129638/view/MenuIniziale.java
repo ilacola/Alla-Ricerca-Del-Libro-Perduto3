@@ -7,7 +7,7 @@ import javafx.scene.layout.VBox;
 
 public class MenuIniziale extends VBox {
 
-    public MenuIniziale() {
+    public MenuIniziale(Runnable azioneNuovaPartita, Runnable azioneEsci) {
         Label titolo = new Label("Alla ricerca del libro perduto");
         titolo.getStyleClass().add("titolo");
 
@@ -17,5 +17,8 @@ public class MenuIniziale extends VBox {
         setAlignment(Pos.CENTER);
         setSpacing(20);
         getChildren().addAll(titolo, nuovaPartita, esci);
+
+        nuovaPartita.setOnAction(evento -> azioneNuovaPartita.run());
+        esci.setOnAction(evento -> azioneEsci.run());
     }
 }

@@ -4,12 +4,16 @@ import it.unicam.cs.mpgc.rpg129638.view.MenuIniziale;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.application.Platform;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        MenuIniziale menu = new MenuIniziale();
+        MenuIniziale menu = new MenuIniziale(
+                () -> System.out.println("Nuova partita!"),
+                Platform::exit);
+
         Scene scena = new Scene(menu, 800, 600);
         scena.getStylesheets().add(
                 getClass().getResource("/style.css").toExternalForm());
