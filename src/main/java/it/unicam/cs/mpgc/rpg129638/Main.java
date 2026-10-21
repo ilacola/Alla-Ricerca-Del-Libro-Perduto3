@@ -23,6 +23,7 @@ public class Main extends Application {
         stage.setTitle("Alla ricerca del libro perduto");
         stage.setScene(scena);
         stage.show();
+
     }
 
     private void mostraMenu() {
