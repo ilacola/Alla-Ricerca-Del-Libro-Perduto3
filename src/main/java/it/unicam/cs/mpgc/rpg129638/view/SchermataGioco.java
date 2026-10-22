@@ -1,6 +1,6 @@
 package it.unicam.cs.mpgc.rpg129638.view;
 
-import it.unicam.cs.mpgc.rpg129638.model.Stanza;
+import it.unicam.cs.mpgc.rpg129638.controller.GameEngine;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 
 public class SchermataGioco extends VBox {
 
-    public SchermataGioco(Stanza stanza, Runnable azioneTornaAlMenu) {
+    public SchermataGioco(GameEngine engine, Runnable azioneTornaAlMenu) {
         Label titolo = new Label("Stanza 1");
         titolo.getStyleClass().add("titolo");
 
@@ -17,6 +17,8 @@ public class SchermataGioco extends VBox {
 
         setAlignment(Pos.CENTER);
         setSpacing(20);
-        getChildren().addAll(titolo, new VistaStanza(stanza), tornaAlMenu);
+        getChildren().addAll(titolo,
+                new VistaStanza(engine.getStanza(), engine.getGiocatore()),
+                tornaAlMenu);
     }
 }

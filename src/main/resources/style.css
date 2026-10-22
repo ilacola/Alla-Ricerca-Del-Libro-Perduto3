@@ -44,3 +44,7 @@
     -fx-background-color: #6b2d2d;
 }
 
+.giocatore {
+    -fx-background-color: #2dc18f /* scegli un colore che spicchi sul pavimento */;
+}
+
