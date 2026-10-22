@@ -32,3 +32,15 @@
     -fx-border-color: oro;
 }
 
+.tile-muro {
+    -fx-background-color: #4a3426;
+}
+
+.tile-pavimento {
+    -fx-background-color: #d9c39a;
+}
+
+.tile-libreria {
+    -fx-background-color: #6b2d2d;
+}
+

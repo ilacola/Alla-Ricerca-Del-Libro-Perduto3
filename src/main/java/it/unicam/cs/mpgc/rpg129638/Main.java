@@ -1,5 +1,7 @@
 package it.unicam.cs.mpgc.rpg129638;
 
+import it.unicam.cs.mpgc.rpg129638.model.Stanza;
+import it.unicam.cs.mpgc.rpg129638.model.TipoTile;
 import it.unicam.cs.mpgc.rpg129638.view.MenuIniziale;
 import it.unicam.cs.mpgc.rpg129638.view.SchermataGioco;
 import javafx.application.Application;
@@ -23,7 +25,6 @@ public class Main extends Application {
         stage.setTitle("Alla ricerca del libro perduto");
         stage.setScene(scena);
         stage.show();
-
     }
 
     private void mostraMenu() {
@@ -31,7 +32,21 @@ public class Main extends Application {
     }
 
     private void mostraGioco() {
-        scena.setRoot(new SchermataGioco(this::mostraMenu));
+        scena.setRoot(new SchermataGioco(creaStanzaDiProva(), this::mostraMenu));
+    }
+
+    private Stanza creaStanzaDiProva() {
+        TipoTile m = TipoTile.MURO;
+        TipoTile p = TipoTile.PAVIMENTO;
+        TipoTile l = TipoTile.LIBRERIA;
+        TipoTile[][] mappa = {
+                {m, m, m, m, m, m, m, m},
+                {m, p, p, p, p, p, p, m},
+                {m, p, p, l, l, p, p, m},
+                {m, p, p, p, p, p, p, m},
+                {m, m, m, m, m, m, m, m}
+        };
+        return new Stanza("Una stanza di prova", mappa);
     }
 
     public static void main(String[] args) {
