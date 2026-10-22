@@ -1,4 +1,4 @@
 package it.unicam.cs.mpgc.rpg129638.interactable;
 
-public class RisultatoInterazione {
+public record RisultatoInterazione(String messaggio) {
 }
