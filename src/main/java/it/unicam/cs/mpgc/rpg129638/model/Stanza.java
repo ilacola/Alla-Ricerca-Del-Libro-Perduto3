@@ -33,4 +33,8 @@ public class Stanza {
         }
         return griglia[posizione.riga()][posizione.colonna()];
     }
+
+    public boolean isTransitabile(Posizione posizione) {
+        return contiene(posizione) && getTile(posizione).isAttraversabile();
+    }
 }

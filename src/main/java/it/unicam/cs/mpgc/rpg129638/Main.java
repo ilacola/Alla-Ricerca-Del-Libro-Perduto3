@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
 
     private Scene scena;
@@ -25,6 +26,7 @@ public class Main extends Application {
         stage.setTitle("Alla ricerca del libro perduto");
         stage.setScene(scena);
         stage.show();
+
     }
 
     private void mostraMenu() {
@@ -49,7 +51,10 @@ public class Main extends Application {
         return new Stanza("Una stanza di prova", mappa);
     }
 
+
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }
