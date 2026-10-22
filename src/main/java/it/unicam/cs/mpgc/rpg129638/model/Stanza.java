@@ -1,5 +1,10 @@
 package it.unicam.cs.mpgc.rpg129638.model;
 
+import it.unicam.cs.mpgc.rpg129638.interactable.Interagibile;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 public class Stanza {
 
     private final String descrizione;
@@ -9,6 +14,8 @@ public class Stanza {
         this.descrizione = descrizione;
         this.griglia = griglia;
     }
+
+    private final List<Interagibile> elementi = new ArrayList<>();
 
     public String getDescrizione() {
         return descrizione;
@@ -37,4 +44,15 @@ public class Stanza {
     public boolean isTransitabile(Posizione posizione) {
         return contiene(posizione) && getTile(posizione).isAttraversabile();
     }
+
+    public void aggiungiElemento(Interagibile elemento) {
+        elementi.add(elemento);
+    }
+
+    public Optional<Interagibile> getElementoIn(Posizione posizione) {
+        return elementi.stream()
+                .filter(elemento -> elemento.getPosizione().equals(posizione))
+                .findFirst();
+    }
+
 }

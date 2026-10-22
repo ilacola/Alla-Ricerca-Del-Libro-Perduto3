@@ -9,3 +9,4 @@ public interface Interagibile {
 
     RisultatoInterazione interagisci(Giocatore giocatore);
 }
+
