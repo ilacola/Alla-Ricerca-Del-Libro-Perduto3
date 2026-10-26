@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg129638;
 
 import it.unicam.cs.mpgc.rpg129638.controller.GameEngine;
 import it.unicam.cs.mpgc.rpg129638.entity.Giocatore;
+import it.unicam.cs.mpgc.rpg129638.interactable.LibroPerduto;
 import it.unicam.cs.mpgc.rpg129638.interactable.Mostro;
 import it.unicam.cs.mpgc.rpg129638.interactable.Porta;
 import it.unicam.cs.mpgc.rpg129638.interactable.Tesoro;
@@ -91,6 +92,8 @@ public class Main extends Application {
                 "Tisana ristoratrice", new Posizione(3, 1), TipoBonus.SALUTE, 30));
         stanza.aggiungiElemento(new Mostro(
                 "Scheletro Bibliotecario", new Posizione(2, 6), 40, 10, 80));
+        stanza.aggiungiElemento(new LibroPerduto(
+                "Il Manoscritto Proibito", new Posizione(3, 7)));
         return stanza;
     }
 

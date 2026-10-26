@@ -46,7 +46,7 @@ public class SchermataGioco extends VBox {
     }
 
     private void gestisciTasto(KeyEvent evento) {
-        if (!engine.isGameOver()) {
+        if (!engine.isPartitaTerminata()) {
             if (evento.getCode() == KeyCode.SPACE) {
                 interagisci();
             } else {
@@ -90,6 +90,9 @@ public class SchermataGioco extends VBox {
         if (engine.isGameOver()) {
             messaggio.setText(messaggio.getText() + "\nGAME OVER: "
                     + engine.getGiocatore().getNome() + " è caduto nei sotterranei.");
+        } else if (engine.isVittoria()) {
+            messaggio.setText(messaggio.getText() + "\nVITTORIA! "
+                    + engine.getGiocatore().getNome() + " ha trovato il libro perduto!");
         }
     }
 

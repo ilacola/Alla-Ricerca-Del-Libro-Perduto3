@@ -4,5 +4,6 @@ public enum TipoElemento {
     MOSTRO,
     TESORO,
     TRAPPOLA,
-    PORTA
+    PORTA,
+    LIBRO
 }

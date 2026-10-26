@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg129638.controller;
 
 import it.unicam.cs.mpgc.rpg129638.entity.Giocatore;
+import it.unicam.cs.mpgc.rpg129638.interactable.EffettoInterazione;
 import it.unicam.cs.mpgc.rpg129638.interactable.RisultatoInterazione;
 import it.unicam.cs.mpgc.rpg129638.model.Direzione;
 import it.unicam.cs.mpgc.rpg129638.model.Mondo;
@@ -35,8 +36,16 @@ public class GameEngine {
         return !giocatore.getStatistiche().isVivo();
     }
 
+    public boolean isVittoria() {
+        return mondo.isCompletato();
+    }
+
+    public boolean isPartitaTerminata() {
+        return isGameOver() || isVittoria();
+    }
+
     public EsitoMovimento muovi(Direzione direzione) {
-        if (isGameOver()) {
+        if (isPartitaTerminata()) {
             return new EsitoMovimento(false, Optional.empty());
         }
         Posizione candidata = giocatore.getPosizione()
@@ -51,25 +60,31 @@ public class GameEngine {
     }
 
     public Optional<RisultatoInterazione> interagisci() {
-        if (isGameOver()) {
+        if (isPartitaTerminata()) {
             return Optional.empty();
         }
         return getStanza().getElementoIn(giocatore.getPosizione())
                 .map(elemento -> elemento.interagisci(giocatore))
-                .map(this::gestisciPassaggio);
+                .map(this::applicaEffetto);
     }
 
-    private RisultatoInterazione gestisciPassaggio(RisultatoInterazione risultato) {
-        if (!risultato.passaAllaStanzaSuccessiva()) {
+    private RisultatoInterazione applicaEffetto(RisultatoInterazione risultato) {
+        if (risultato.effetto() == EffettoInterazione.NESSUNO) {
             return risultato;
         }
         if (!getStanza().isCompletata()) {
             return new RisultatoInterazione(
-                    "La porta è sbarrata: finché il custode è in piedi non puoi passare.");
+                    "Il custode è ancora in piedi: finché non lo sconfiggi non puoi proseguire.");
         }
-        if (mondo.haStanzaSuccessiva()) {
-            mondo.passaAllaStanzaSuccessiva();
-            giocatore.spostaA(getStanza().getPosizioneIniziale());
+        switch (risultato.effetto()) {
+            case PASSA_ALLA_STANZA_SUCCESSIVA -> {
+                if (mondo.haStanzaSuccessiva()) {
+                    mondo.passaAllaStanzaSuccessiva();
+                    giocatore.spostaA(getStanza().getPosizioneIniziale());
+                }
+            }
+            case COMPLETA_IL_MONDO -> mondo.completa();
+            default -> { }
         }
         return risultato;
     }

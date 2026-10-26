@@ -7,6 +7,7 @@ public class Mondo {
     private final String nome;
     private final List<Stanza> stanze;
     private int indiceCorrente = 0;
+    private boolean completato = false;
 
     public Mondo(String nome, List<Stanza> stanze) {
         if (stanze.isEmpty()) {
@@ -41,5 +42,13 @@ public class Mondo {
             throw new IllegalStateException("Non esiste una stanza successiva");
         }
         indiceCorrente++;
+    }
+
+    public void completa() {
+        completato = true;
+    }
+
+    public boolean isCompletato() {
+        return completato;
     }
 }

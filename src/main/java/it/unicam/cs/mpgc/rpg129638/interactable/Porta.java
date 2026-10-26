@@ -23,7 +23,8 @@ public class Porta implements Interagibile {
 
     @Override
     public RisultatoInterazione interagisci(Giocatore giocatore) {
-        return new RisultatoInterazione("Apri la porta e prosegui nelle profondità...", true);
+        return new RisultatoInterazione("Apri la porta e prosegui nelle profondità...",
+                EffettoInterazione.PASSA_ALLA_STANZA_SUCCESSIVA);
     }
 
     @Override
