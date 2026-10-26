@@ -48,4 +48,9 @@ public class Mostro implements Interagibile {
     public boolean isEsaurito() {
         return puntiVita == 0;
     }
+
+    @Override
+    public TipoElemento getTipo() {
+        return TipoElemento.MOSTRO;
+    }
 }

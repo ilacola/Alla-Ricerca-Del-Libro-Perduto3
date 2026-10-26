@@ -44,8 +44,16 @@
     -fx-background-color: #6b2d2d;
 }
 
-.elemento {
+.elemento-tesoro {
     -fx-background-color: #c9a24a;
+}
+
+.elemento-mostro {
+    -fx-background-color: #5b3a8c;
+}
+
+.elemento-trappola {
+    -fx-background-color: #b5472b;
 }
 
 .messaggio {

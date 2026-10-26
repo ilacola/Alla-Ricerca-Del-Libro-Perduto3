@@ -9,9 +9,15 @@ public interface Interagibile {
 
     Posizione getPosizione();
 
+    TipoElemento getTipo();
+
     RisultatoInterazione interagisci(Giocatore giocatore);
 
     boolean isEsaurito();
+
+    default boolean isVisibileA(Giocatore giocatore) {
+        return true;
+    }
 
     default Optional<RisultatoInterazione> alIngresso(Giocatore giocatore) {
         return Optional.empty();

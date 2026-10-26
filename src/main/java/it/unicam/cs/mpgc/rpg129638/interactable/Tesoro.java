@@ -36,4 +36,9 @@ public class Tesoro implements Interagibile {
     public boolean isEsaurito() {
         return raccolto;
     }
+
+    @Override
+    public TipoElemento getTipo() {
+        return TipoElemento.TESORO;
+    }
 }

@@ -33,6 +33,11 @@ public class Trappola implements Interagibile {
     }
 
     @Override
+    public TipoElemento getTipo() {
+        return TipoElemento.TRAPPOLA;
+    }
+
+    @Override
     public RisultatoInterazione interagisci(Giocatore giocatore) {
         return scatta(giocatore);
     }
@@ -45,6 +50,11 @@ public class Trappola implements Interagibile {
     @Override
     public boolean isEsaurito() {
         return scattata;
+    }
+
+    @Override
+    public boolean isVisibileA(Giocatore giocatore) {
+        return giocatore.getStatistiche().getIntuito() >= difficolta;
     }
 
     private RisultatoInterazione scatta(Giocatore giocatore) {
