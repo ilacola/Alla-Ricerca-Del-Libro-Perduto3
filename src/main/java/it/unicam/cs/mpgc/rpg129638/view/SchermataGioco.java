@@ -6,7 +6,6 @@ import it.unicam.cs.mpgc.rpg129638.interactable.RisultatoInterazione;
 import it.unicam.cs.mpgc.rpg129638.model.Direzione;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -14,7 +13,11 @@ import javafx.scene.layout.VBox;
 
 public class SchermataGioco extends VBox {
 
+    private static final String GUIDA =
+            "Frecce: muoviti   Spazio: interagisci   Esc: menu";
+
     private final GameEngine engine;
+    private final Runnable azioneTornaAlMenu;
     private final VistaStanza vistaStanza;
     private final PannelloStatistiche pannelloStatistiche;
     private final Label titolo;
@@ -22,6 +25,7 @@ public class SchermataGioco extends VBox {
 
     public SchermataGioco(GameEngine engine, Runnable azioneTornaAlMenu) {
         this.engine = engine;
+        this.azioneTornaAlMenu = azioneTornaAlMenu;
         this.vistaStanza = new VistaStanza(engine);
         this.pannelloStatistiche = new PannelloStatistiche(engine.getGiocatore().getStatistiche());
 
@@ -29,16 +33,12 @@ public class SchermataGioco extends VBox {
         titolo.getStyleClass().add("titolo");
         aggiornaTitolo();
 
-        messaggio = new Label(" ");
+        messaggio = new Label(GUIDA);
         messaggio.getStyleClass().add("messaggio");
-
-        Button tornaAlMenu = new Button("Menu");
-        tornaAlMenu.setFocusTraversable(false);
-        tornaAlMenu.setOnAction(evento -> azioneTornaAlMenu.run());
 
         setAlignment(Pos.CENTER);
         setSpacing(20);
-        getChildren().addAll(titolo, messaggio, vistaStanza, pannelloStatistiche, tornaAlMenu);
+        getChildren().addAll(titolo, messaggio, vistaStanza, pannelloStatistiche);
 
         setFocusTraversable(true);
         setOnKeyPressed(this::gestisciTasto);
@@ -46,7 +46,9 @@ public class SchermataGioco extends VBox {
     }
 
     private void gestisciTasto(KeyEvent evento) {
-        if (!engine.isPartitaTerminata()) {
+        if (evento.getCode() == KeyCode.ESCAPE) {
+            azioneTornaAlMenu.run();
+        } else if (!engine.isPartitaTerminata()) {
             if (evento.getCode() == KeyCode.SPACE) {
                 interagisci();
             } else {
@@ -89,10 +91,12 @@ public class SchermataGioco extends VBox {
         vistaStanza.aggiorna();
         if (engine.isGameOver()) {
             messaggio.setText(messaggio.getText() + "\nGAME OVER: "
-                    + engine.getGiocatore().getNome() + " è caduto nei sotterranei.");
+                    + engine.getGiocatore().getNome() + " è caduto nei sotterranei."
+                    + "\nPremi Esc per tornare al menu.");
         } else if (engine.isVittoria()) {
             messaggio.setText(messaggio.getText() + "\nVITTORIA! "
-                    + engine.getGiocatore().getNome() + " ha trovato il libro perduto!");
+                    + engine.getGiocatore().getNome() + " ha trovato il libro perduto!"
+                    + "\nPremi Esc per tornare al menu.");
         }
     }
 
