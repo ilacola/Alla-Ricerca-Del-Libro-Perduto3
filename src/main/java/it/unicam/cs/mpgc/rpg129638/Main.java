@@ -3,6 +3,7 @@ package it.unicam.cs.mpgc.rpg129638;
 import it.unicam.cs.mpgc.rpg129638.controller.GameEngine;
 import it.unicam.cs.mpgc.rpg129638.entity.Giocatore;
 import it.unicam.cs.mpgc.rpg129638.interactable.Mostro;
+import it.unicam.cs.mpgc.rpg129638.interactable.Porta;
 import it.unicam.cs.mpgc.rpg129638.interactable.Tesoro;
 import it.unicam.cs.mpgc.rpg129638.interactable.TipoBonus;
 import it.unicam.cs.mpgc.rpg129638.interactable.Trappola;
@@ -42,14 +43,15 @@ public class Main extends Application {
     }
 
     private void mostraGioco() {
-        Mondo mondo = new Mondo("I sotterranei della biblioteca", List.of(creaStanzaDiProva()));
+        Mondo mondo = new Mondo("I sotterranei della biblioteca",
+                List.of(creaStanza1(), creaStanza2()));
         GameEngine engine = new GameEngine(
                 mondo,
-                new Giocatore("Ricercatore", new Posizione(1, 1)));
+                new Giocatore("Ricercatore", mondo.getStanzaCorrente().getPosizioneIniziale()));
         scena.setRoot(new SchermataGioco(engine, this::mostraMenu));
     }
 
-    private Stanza creaStanzaDiProva() {
+    private Stanza creaStanza1() {
         TipoTile m = TipoTile.MURO;
         TipoTile p = TipoTile.PAVIMENTO;
         TipoTile l = TipoTile.LIBRERIA;
@@ -60,7 +62,7 @@ public class Main extends Application {
                 {m, p, p, p, p, p, p, m},
                 {m, m, m, m, m, m, m, m}
         };
-        Stanza stanza = new Stanza("Una stanza di prova", mappa);
+        Stanza stanza = new Stanza("Una stanza buia piena di ragnatele", mappa, new Posizione(1, 1));
         stanza.aggiungiElemento(new Tesoro(
                 "Pozione del Sapiente", new Posizione(3, 5), TipoBonus.INTUITO, 5));
         stanza.aggiungiElemento(new Trappola(
@@ -69,6 +71,26 @@ public class Main extends Application {
                 "una raffica di frecce ti colpisce!"));
         stanza.aggiungiElemento(new Mostro(
                 "Ragno Custode", new Posizione(1, 4), 30, 8, 50));
+        stanza.aggiungiElemento(new Porta(new Posizione(1, 6)));
+        return stanza;
+    }
+
+    private Stanza creaStanza2() {
+        TipoTile m = TipoTile.MURO;
+        TipoTile p = TipoTile.PAVIMENTO;
+        TipoTile l = TipoTile.LIBRERIA;
+        TipoTile[][] mappa = {
+                {m, m, m, m, m, m, m, m, m},
+                {m, p, p, p, l, p, p, p, m},
+                {m, p, p, p, l, p, p, p, m},
+                {m, p, p, p, p, p, p, p, m},
+                {m, m, m, m, m, m, m, m, m}
+        };
+        Stanza stanza = new Stanza("Un archivio polveroso", mappa, new Posizione(1, 1));
+        stanza.aggiungiElemento(new Tesoro(
+                "Tisana ristoratrice", new Posizione(3, 1), TipoBonus.SALUTE, 30));
+        stanza.aggiungiElemento(new Mostro(
+                "Scheletro Bibliotecario", new Posizione(2, 6), 40, 10, 80));
         return stanza;
     }
 

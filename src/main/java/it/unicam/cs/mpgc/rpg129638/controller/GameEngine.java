@@ -54,7 +54,18 @@ public class GameEngine {
         if (isGameOver()) {
             return Optional.empty();
         }
-        return getStanza().getElementoIn(giocatore.getPosizione())
+        Optional<RisultatoInterazione> risultato = getStanza()
+                .getElementoIn(giocatore.getPosizione())
                 .map(elemento -> elemento.interagisci(giocatore));
+        risultato.filter(RisultatoInterazione::passaAllaStanzaSuccessiva)
+                .ifPresent(r -> passaAllaStanzaSuccessiva());
+        return risultato;
+    }
+
+    private void passaAllaStanzaSuccessiva() {
+        if (mondo.haStanzaSuccessiva()) {
+            mondo.passaAllaStanzaSuccessiva();
+            giocatore.spostaA(getStanza().getPosizioneIniziale());
+        }
     }
 }

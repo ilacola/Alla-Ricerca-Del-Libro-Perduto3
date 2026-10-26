@@ -10,15 +10,21 @@ public class Stanza {
 
     private final String descrizione;
     private final TipoTile[][] griglia;
+    private final Posizione posizioneIniziale;
     private final List<Interagibile> elementi = new ArrayList<>();
 
-    public Stanza(String descrizione, TipoTile[][] griglia) {
+    public Stanza(String descrizione, TipoTile[][] griglia, Posizione posizioneIniziale) {
         this.descrizione = descrizione;
         this.griglia = griglia;
+        this.posizioneIniziale = posizioneIniziale;
     }
 
     public String getDescrizione() {
         return descrizione;
+    }
+
+    public Posizione getPosizioneIniziale() {
+        return posizioneIniziale;
     }
 
     public int getRighe() {
