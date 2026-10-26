@@ -54,18 +54,23 @@ public class GameEngine {
         if (isGameOver()) {
             return Optional.empty();
         }
-        Optional<RisultatoInterazione> risultato = getStanza()
-                .getElementoIn(giocatore.getPosizione())
-                .map(elemento -> elemento.interagisci(giocatore));
-        risultato.filter(RisultatoInterazione::passaAllaStanzaSuccessiva)
-                .ifPresent(r -> passaAllaStanzaSuccessiva());
-        return risultato;
+        return getStanza().getElementoIn(giocatore.getPosizione())
+                .map(elemento -> elemento.interagisci(giocatore))
+                .map(this::gestisciPassaggio);
     }
 
-    private void passaAllaStanzaSuccessiva() {
+    private RisultatoInterazione gestisciPassaggio(RisultatoInterazione risultato) {
+        if (!risultato.passaAllaStanzaSuccessiva()) {
+            return risultato;
+        }
+        if (!getStanza().isCompletata()) {
+            return new RisultatoInterazione(
+                    "La porta è sbarrata: finché il custode è in piedi non puoi passare.");
+        }
         if (mondo.haStanzaSuccessiva()) {
             mondo.passaAllaStanzaSuccessiva();
             giocatore.spostaA(getStanza().getPosizioneIniziale());
         }
+        return risultato;
     }
 }

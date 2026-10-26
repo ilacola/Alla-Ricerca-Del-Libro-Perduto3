@@ -53,4 +53,9 @@ public class Mostro implements Interagibile {
     public TipoElemento getTipo() {
         return TipoElemento.MOSTRO;
     }
+
+    @Override
+    public boolean bloccaUscita() {
+        return true;
+    }
 }

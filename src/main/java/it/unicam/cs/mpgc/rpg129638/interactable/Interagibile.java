@@ -15,6 +15,10 @@ public interface Interagibile {
 
     boolean isEsaurito();
 
+    default boolean bloccaUscita() {
+        return false;
+    }
+
     default boolean isVisibileA(Giocatore giocatore) {
         return true;
     }

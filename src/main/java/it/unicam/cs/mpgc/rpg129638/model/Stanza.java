@@ -61,4 +61,9 @@ public class Stanza {
                 .filter(elemento -> elemento.getPosizione().equals(posizione))
                 .findFirst();
     }
+
+    public boolean isCompletata() {
+        return elementi.stream()
+                .noneMatch(elemento -> elemento.bloccaUscita() && !elemento.isEsaurito());
+    }
 }
