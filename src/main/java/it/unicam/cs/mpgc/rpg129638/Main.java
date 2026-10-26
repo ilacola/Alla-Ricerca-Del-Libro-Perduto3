@@ -6,6 +6,7 @@ import it.unicam.cs.mpgc.rpg129638.interactable.Mostro;
 import it.unicam.cs.mpgc.rpg129638.interactable.Tesoro;
 import it.unicam.cs.mpgc.rpg129638.interactable.TipoBonus;
 import it.unicam.cs.mpgc.rpg129638.interactable.Trappola;
+import it.unicam.cs.mpgc.rpg129638.model.Mondo;
 import it.unicam.cs.mpgc.rpg129638.model.Posizione;
 import it.unicam.cs.mpgc.rpg129638.model.Stanza;
 import it.unicam.cs.mpgc.rpg129638.model.TipoTile;
@@ -16,6 +17,8 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 public class Main extends Application {
 
@@ -39,8 +42,9 @@ public class Main extends Application {
     }
 
     private void mostraGioco() {
+        Mondo mondo = new Mondo("I sotterranei della biblioteca", List.of(creaStanzaDiProva()));
         GameEngine engine = new GameEngine(
-                creaStanzaDiProva(),
+                mondo,
                 new Giocatore("Ricercatore", new Posizione(1, 1)));
         scena.setRoot(new SchermataGioco(engine, this::mostraMenu));
     }

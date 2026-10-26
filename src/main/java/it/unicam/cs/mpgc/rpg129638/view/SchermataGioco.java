@@ -17,15 +17,17 @@ public class SchermataGioco extends VBox {
     private final GameEngine engine;
     private final VistaStanza vistaStanza;
     private final PannelloStatistiche pannelloStatistiche;
+    private final Label titolo;
     private final Label messaggio;
 
     public SchermataGioco(GameEngine engine, Runnable azioneTornaAlMenu) {
         this.engine = engine;
-        this.vistaStanza = new VistaStanza(engine.getStanza(), engine.getGiocatore());
+        this.vistaStanza = new VistaStanza(engine);
         this.pannelloStatistiche = new PannelloStatistiche(engine.getGiocatore().getStatistiche());
 
-        Label titolo = new Label("Stanza 1");
+        titolo = new Label();
         titolo.getStyleClass().add("titolo");
+        aggiornaTitolo();
 
         messaggio = new Label(" ");
         messaggio.getStyleClass().add("messaggio");
@@ -82,11 +84,18 @@ public class SchermataGioco extends VBox {
     }
 
     private void aggiornaSchermata() {
+        aggiornaTitolo();
         pannelloStatistiche.aggiorna();
         vistaStanza.aggiorna();
         if (engine.isGameOver()) {
             messaggio.setText(messaggio.getText() + "\nGAME OVER: "
                     + engine.getGiocatore().getNome() + " è caduto nei sotterranei.");
         }
+    }
+
+    private void aggiornaTitolo() {
+        titolo.setText(engine.getMondo().getNome() + " - Stanza "
+                + engine.getMondo().getNumeroStanzaCorrente() + "/"
+                + engine.getMondo().getNumeroStanze());
     }
 }

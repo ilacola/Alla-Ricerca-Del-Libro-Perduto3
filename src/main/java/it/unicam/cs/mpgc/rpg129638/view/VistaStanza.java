@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg129638.view;
 
+import it.unicam.cs.mpgc.rpg129638.controller.GameEngine;
 import it.unicam.cs.mpgc.rpg129638.entity.Giocatore;
 import it.unicam.cs.mpgc.rpg129638.model.Posizione;
 import it.unicam.cs.mpgc.rpg129638.model.Stanza;
@@ -11,17 +12,17 @@ public class VistaStanza extends GridPane {
 
     private static final int DIMENSIONE_CELLA = 48;
 
-    private final Stanza stanza;
-    private final Giocatore giocatore;
+    private final GameEngine engine;
 
-    public VistaStanza(Stanza stanza, Giocatore giocatore) {
-        this.stanza = stanza;
-        this.giocatore = giocatore;
+    public VistaStanza(GameEngine engine) {
+        this.engine = engine;
         setAlignment(Pos.CENTER);
         aggiorna();
     }
 
     public void aggiorna() {
+        Stanza stanza = engine.getStanza();
+        Giocatore giocatore = engine.getGiocatore();
         getChildren().clear();
         for (int riga = 0; riga < stanza.getRighe(); riga++) {
             for (int colonna = 0; colonna < stanza.getColonne(); colonna++) {
