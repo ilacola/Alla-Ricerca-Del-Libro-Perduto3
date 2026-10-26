@@ -3,6 +3,8 @@ package it.unicam.cs.mpgc.rpg129638.interactable;
 import it.unicam.cs.mpgc.rpg129638.entity.Giocatore;
 import it.unicam.cs.mpgc.rpg129638.model.Posizione;
 
+import java.util.Optional;
+
 public interface Interagibile {
 
     Posizione getPosizione();
@@ -10,4 +12,8 @@ public interface Interagibile {
     RisultatoInterazione interagisci(Giocatore giocatore);
 
     boolean isEsaurito();
+
+    default Optional<RisultatoInterazione> alIngresso(Giocatore giocatore) {
+        return Optional.empty();
+    }
 }

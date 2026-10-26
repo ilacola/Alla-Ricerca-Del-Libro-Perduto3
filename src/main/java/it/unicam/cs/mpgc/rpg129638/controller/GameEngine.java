@@ -26,14 +26,16 @@ public class GameEngine {
         return giocatore;
     }
 
-    public boolean muovi(Direzione direzione) {
+    public EsitoMovimento muovi(Direzione direzione) {
         Posizione candidata = giocatore.getPosizione()
                 .spostata(direzione.getDeltaRiga(), direzione.getDeltaColonna());
-        if (stanza.isTransitabile(candidata)) {
-            giocatore.spostaA(candidata);
-            return true;
+        if (!stanza.isTransitabile(candidata)) {
+            return new EsitoMovimento(false, Optional.empty());
         }
-        return false;
+        giocatore.spostaA(candidata);
+        Optional<RisultatoInterazione> evento = stanza.getElementoIn(candidata)
+                .flatMap(elemento -> elemento.alIngresso(giocatore));
+        return new EsitoMovimento(true, evento);
     }
 
     public Optional<RisultatoInterazione> interagisci() {

@@ -2,8 +2,9 @@ package it.unicam.cs.mpgc.rpg129638;
 
 import it.unicam.cs.mpgc.rpg129638.controller.GameEngine;
 import it.unicam.cs.mpgc.rpg129638.entity.Giocatore;
-import it.unicam.cs.mpgc.rpg129638.interactable.TipoBonus;
 import it.unicam.cs.mpgc.rpg129638.interactable.Tesoro;
+import it.unicam.cs.mpgc.rpg129638.interactable.TipoBonus;
+import it.unicam.cs.mpgc.rpg129638.interactable.Trappola;
 import it.unicam.cs.mpgc.rpg129638.model.Posizione;
 import it.unicam.cs.mpgc.rpg129638.model.Stanza;
 import it.unicam.cs.mpgc.rpg129638.model.TipoTile;
@@ -57,6 +58,10 @@ public class Main extends Application {
         Stanza stanza = new Stanza("Una stanza di prova", mappa);
         stanza.aggiungiElemento(new Tesoro(
                 "Pozione del Sapiente", new Posizione(3, 5), TipoBonus.INTUITO, 5));
+        stanza.aggiungiElemento(new Trappola(
+                "Frecce nascoste", new Posizione(3, 3), 20, 12,
+                "noti le piastrelle a pressione e schivi il meccanismo!",
+                "una raffica di frecce ti colpisce!"));
         return stanza;
     }
 

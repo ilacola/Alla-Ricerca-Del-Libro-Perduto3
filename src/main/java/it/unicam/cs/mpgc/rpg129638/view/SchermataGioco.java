@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg129638.view;
 
+import it.unicam.cs.mpgc.rpg129638.controller.EsitoMovimento;
 import it.unicam.cs.mpgc.rpg129638.controller.GameEngine;
 import it.unicam.cs.mpgc.rpg129638.interactable.RisultatoInterazione;
 import it.unicam.cs.mpgc.rpg129638.model.Direzione;
@@ -67,8 +68,15 @@ public class SchermataGioco extends VBox {
             case RIGHT -> Direzione.DESTRA;
             default -> null;
         };
-        if (direzione != null && engine.muovi(direzione)) {
-            messaggio.setText(" ");
+        if (direzione == null) {
+            return;
+        }
+        EsitoMovimento esito = engine.muovi(direzione);
+        if (esito.mosso()) {
+            messaggio.setText(esito.evento()
+                    .map(RisultatoInterazione::messaggio)
+                    .orElse(" "));
+            pannelloStatistiche.aggiorna();
             vistaStanza.aggiorna();
         }
     }
