@@ -52,6 +52,7 @@
     -fx-text-fill: #f1e3c4;
     -fx-font-family: "Georgia";
     -fx-font-size: 18px;
+    -fx-text-alignment: center;
 }
 
 .giocatore {

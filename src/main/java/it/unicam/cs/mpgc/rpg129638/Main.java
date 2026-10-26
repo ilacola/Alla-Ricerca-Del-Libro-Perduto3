@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg129638;
 
 import it.unicam.cs.mpgc.rpg129638.controller.GameEngine;
 import it.unicam.cs.mpgc.rpg129638.entity.Giocatore;
+import it.unicam.cs.mpgc.rpg129638.interactable.Mostro;
 import it.unicam.cs.mpgc.rpg129638.interactable.Tesoro;
 import it.unicam.cs.mpgc.rpg129638.interactable.TipoBonus;
 import it.unicam.cs.mpgc.rpg129638.interactable.Trappola;
@@ -62,6 +63,8 @@ public class Main extends Application {
                 "Frecce nascoste", new Posizione(3, 3), 20, 12,
                 "noti le piastrelle a pressione e schivi il meccanismo!",
                 "una raffica di frecce ti colpisce!"));
+        stanza.aggiungiElemento(new Mostro(
+                "Ragno Custode", new Posizione(1, 4), 30, 8, 50));
         return stanza;
     }
 
