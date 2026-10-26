@@ -106,3 +106,5 @@ public class SchermataGioco extends VBox {
                 + engine.getMondo().getNumeroStanze());
     }
 }
+
+//guarda sinceramente quelle immagini le vorrei cambiare perchè non si addicono molto al contesto

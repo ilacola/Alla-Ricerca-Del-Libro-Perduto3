@@ -32,30 +32,6 @@
     -fx-border-color: oro;
 }
 
-.tile-muro {
-    -fx-background-color: #4a3426;
-}
-
-.tile-pavimento {
-    -fx-background-color: #d9c39a;
-}
-
-.tile-libreria {
-    -fx-background-color: #6b2d2d;
-}
-
-.elemento-tesoro {
-    -fx-background-color: #c9a24a;
-}
-
-.elemento-mostro {
-    -fx-background-color: #5b3a8c;
-}
-
-.elemento-trappola {
-    -fx-background-color: #b5472b;
-}
-
 .messaggio {
     -fx-text-fill: #f1e3c4;
     -fx-font-family: "Georgia";
@@ -63,20 +39,59 @@
     -fx-text-alignment: center;
 }
 
-.elemento-porta {
-    -fx-background-color: #8b5a2b;
-}
-
-.elemento-libro {
-    -fx-background-color: #2f6f73;
-}
-
-.giocatore {
-    -fx-background-color: #2dc18f /* scegli un colore che spicchi sul pavimento */;
-}
-
 .statistiche {
     -fx-text-fill: #c9a24a;
     -fx-font-family: "Georgia";
     -fx-font-size: 16px;
+}
+
+/* ---------- Celle della stanza: immagini ---------- */
+
+.tile-pavimento,
+.tile-muro,
+.tile-libreria,
+.elemento-tesoro,
+.elemento-mostro,
+.elemento-trappola,
+.elemento-porta,
+.elemento-libro,
+.giocatore {
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+}
+
+.tile-pavimento {
+    -fx-background-image: url("images/tile-pavimento.png");
+}
+
+.tile-muro {
+    -fx-background-image: url("images/tile-muro.png");
+}
+
+.tile-libreria {
+    -fx-background-image: url("images/tile-libreria.png");
+}
+
+.elemento-tesoro {
+    -fx-background-image: url("images/elemento-tesoro.png");
+}
+
+.elemento-mostro {
+    -fx-background-image: url("images/elemento-mostro.png");
+}
+
+.elemento-trappola {
+    -fx-background-image: url("images/elemento-trappola.png");
+}
+
+.elemento-porta {
+    -fx-background-image: url("images/elemento-porta.png");
+}
+
+.elemento-libro {
+    -fx-background-image: url("images/elemento-libro.png");
+}
+
+.giocatore {
+    -fx-background-image: url("images/giocatore.png");
 }
