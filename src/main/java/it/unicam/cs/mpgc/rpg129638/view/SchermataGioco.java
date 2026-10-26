@@ -15,11 +15,13 @@ public class SchermataGioco extends VBox {
 
     private final GameEngine engine;
     private final VistaStanza vistaStanza;
+    private final PannelloStatistiche pannelloStatistiche;
     private final Label messaggio;
 
     public SchermataGioco(GameEngine engine, Runnable azioneTornaAlMenu) {
         this.engine = engine;
         this.vistaStanza = new VistaStanza(engine.getStanza(), engine.getGiocatore());
+        this.pannelloStatistiche = new PannelloStatistiche(engine.getGiocatore().getStatistiche());
 
         Label titolo = new Label("Stanza 1");
         titolo.getStyleClass().add("titolo");
@@ -33,7 +35,7 @@ public class SchermataGioco extends VBox {
 
         setAlignment(Pos.CENTER);
         setSpacing(20);
-        getChildren().addAll(titolo, messaggio, vistaStanza, tornaAlMenu);
+        getChildren().addAll(titolo, messaggio, vistaStanza, pannelloStatistiche, tornaAlMenu);
 
         setFocusTraversable(true);
         setOnKeyPressed(this::gestisciTasto);
@@ -42,13 +44,18 @@ public class SchermataGioco extends VBox {
 
     private void gestisciTasto(KeyEvent evento) {
         if (evento.getCode() == KeyCode.SPACE) {
-            messaggio.setText(engine.interagisci()
-                    .map(RisultatoInterazione::messaggio)
-                    .orElse("Non c'è nulla con cui interagire qui."));
+            interagisci();
         } else {
             muovi(evento.getCode());
         }
         evento.consume();
+    }
+
+    private void interagisci() {
+        messaggio.setText(engine.interagisci()
+                .map(RisultatoInterazione::messaggio)
+                .orElse("Non c'è nulla con cui interagire qui."));
+        pannelloStatistiche.aggiorna();
     }
 
     private void muovi(KeyCode tasto) {

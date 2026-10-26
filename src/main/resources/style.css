@@ -58,3 +58,8 @@
     -fx-background-color: #2dc18f /* scegli un colore che spicchi sul pavimento */;
 }
 
+.statistiche {
+    -fx-text-fill: #c9a24a;
+    -fx-font-family: "Georgia";
+    -fx-font-size: 16px;
+}
