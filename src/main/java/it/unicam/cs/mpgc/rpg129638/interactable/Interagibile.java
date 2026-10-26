@@ -8,5 +8,6 @@ public interface Interagibile {
     Posizione getPosizione();
 
     RisultatoInterazione interagisci(Giocatore giocatore);
-}
 
+    boolean isEsaurito();
+}

@@ -56,6 +56,7 @@ public class SchermataGioco extends VBox {
                 .map(RisultatoInterazione::messaggio)
                 .orElse("Non c'è nulla con cui interagire qui."));
         pannelloStatistiche.aggiorna();
+        vistaStanza.aggiorna();
     }
 
     private void muovi(KeyCode tasto) {

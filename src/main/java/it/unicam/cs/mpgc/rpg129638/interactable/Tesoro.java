@@ -26,12 +26,14 @@ public class Tesoro implements Interagibile {
 
     @Override
     public RisultatoInterazione interagisci(Giocatore giocatore) {
-        if (raccolto) {
-            return new RisultatoInterazione("Hai già raccolto: " + nome + ".");
-        }
         raccolto = true;
         tipoBonus.applica(giocatore.getStatistiche(), valoreBonus);
         return new RisultatoInterazione("Hai trovato: " + nome + "! "
                 + "+" + valoreBonus + " " + tipoBonus.getNome());
+    }
+
+    @Override
+    public boolean isEsaurito() {
+        return raccolto;
     }
 }
