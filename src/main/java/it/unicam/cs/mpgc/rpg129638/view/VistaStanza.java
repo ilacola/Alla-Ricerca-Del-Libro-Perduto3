@@ -29,6 +29,9 @@ public class VistaStanza extends GridPane {
                 Region cella = new Region();
                 cella.setPrefSize(DIMENSIONE_CELLA, DIMENSIONE_CELLA);
                 cella.getStyleClass().add("tile-" + stanza.getTile(posizione).name().toLowerCase());
+                if (stanza.getElementoIn(posizione).isPresent()) {
+                    cella.getStyleClass().add("elemento");
+                }
                 if (posizione.equals(giocatore.getPosizione())) {
                     cella.getStyleClass().add("giocatore");
                 }

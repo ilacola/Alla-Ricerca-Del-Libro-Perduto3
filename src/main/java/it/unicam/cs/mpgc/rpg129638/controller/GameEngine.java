@@ -1,9 +1,12 @@
 package it.unicam.cs.mpgc.rpg129638.controller;
 
 import it.unicam.cs.mpgc.rpg129638.entity.Giocatore;
+import it.unicam.cs.mpgc.rpg129638.interactable.RisultatoInterazione;
 import it.unicam.cs.mpgc.rpg129638.model.Direzione;
 import it.unicam.cs.mpgc.rpg129638.model.Posizione;
 import it.unicam.cs.mpgc.rpg129638.model.Stanza;
+
+import java.util.Optional;
 
 public class GameEngine {
 
@@ -31,5 +34,10 @@ public class GameEngine {
             return true;
         }
         return false;
+    }
+
+    public Optional<RisultatoInterazione> interagisci() {
+        return stanza.getElementoIn(giocatore.getPosizione())
+                .map(elemento -> elemento.interagisci(giocatore));
     }
 }

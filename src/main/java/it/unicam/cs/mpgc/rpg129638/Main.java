@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg129638;
 
 import it.unicam.cs.mpgc.rpg129638.controller.GameEngine;
 import it.unicam.cs.mpgc.rpg129638.entity.Giocatore;
+import it.unicam.cs.mpgc.rpg129638.interactable.Tesoro;
 import it.unicam.cs.mpgc.rpg129638.model.Posizione;
 import it.unicam.cs.mpgc.rpg129638.model.Stanza;
 import it.unicam.cs.mpgc.rpg129638.model.TipoTile;
@@ -52,7 +53,9 @@ public class Main extends Application {
                 {m, p, p, p, p, p, p, m},
                 {m, m, m, m, m, m, m, m}
         };
-        return new Stanza("Una stanza di prova", mappa);
+        Stanza stanza = new Stanza("Una stanza di prova", mappa);
+        stanza.aggiungiElemento(new Tesoro("Pozione del Sapiente", new Posizione(3, 5)));
+        return stanza;
     }
 
     public static void main(String[] args) {

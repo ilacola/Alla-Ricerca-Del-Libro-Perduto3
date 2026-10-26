@@ -44,6 +44,16 @@
     -fx-background-color: #6b2d2d;
 }
 
+.elemento {
+    -fx-background-color: #c9a24a;
+}
+
+.messaggio {
+    -fx-text-fill: #f1e3c4;
+    -fx-font-family: "Georgia";
+    -fx-font-size: 18px;
+}
+
 .giocatore {
     -fx-background-color: #2dc18f /* scegli un colore che spicchi sul pavimento */;
 }
