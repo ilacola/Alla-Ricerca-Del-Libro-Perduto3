@@ -1,0 +1,72 @@
+{
+  "nome": "I sotterranei della biblioteca",
+  "stanze": [
+    {
+      "descrizione": "Una stanza buia piena di ragnatele",
+      "partenza": { "riga": 1, "colonna": 1 },
+      "mappa": [
+        "MMMMMMMM",
+        "MPPPPPPM",
+        "MPPLLPPM",
+        "MPPPPPPM",
+        "MMMMMMMM"
+      ],
+      "elementi": [
+        {
+          "tipo": "TESORO",
+          "nome": "Pozione del Sapiente",
+          "riga": 3, "colonna": 5,
+          "bonus": "INTUITO", "valore": 5
+        },
+        {
+          "tipo": "TRAPPOLA",
+          "nome": "Frecce nascoste",
+          "riga": 3, "colonna": 3,
+          "danno": 20, "difficolta": 12,
+          "messaggioSuccesso": "noti le piastrelle a pressione e schivi il meccanismo!",
+          "messaggioFallimento": "una raffica di frecce ti colpisce!"
+        },
+        {
+          "tipo": "MOSTRO",
+          "nome": "Ragno Custode",
+          "riga": 1, "colonna": 4,
+          "puntiVita": 30, "forzaAttacco": 8, "esperienza": 50
+        },
+        {
+          "tipo": "PORTA",
+          "riga": 1, "colonna": 6
+        }
+      ]
+    },
+    {
+      "descrizione": "Un archivio polveroso",
+      "partenza": { "riga": 1, "colonna": 1 },
+      "mappa": [
+        "MMMMMMMMM",
+        "MPPPLPPPM",
+        "MPPPLPPPM",
+        "MPPPPPPPM",
+        "MMMMMMMMM"
+      ],
+      "elementi": [
+        {
+          "tipo": "TESORO",
+          "nome": "Tisana ristoratrice",
+          "riga": 3, "colonna": 1,
+          "bonus": "SALUTE", "valore": 30
+        },
+        {
+          "tipo": "MOSTRO",
+          "nome": "Scheletro Bibliotecario",
+          "riga": 2, "colonna": 6,
+          "puntiVita": 40, "forzaAttacco": 10, "esperienza": 80
+        },
+        {
+          "tipo": "LIBRO",
+          "titolo": "Il Manoscritto Proibito",
+          "riga": 3, "colonna": 7
+        }
+      ]
+    }
+  ]
+}
