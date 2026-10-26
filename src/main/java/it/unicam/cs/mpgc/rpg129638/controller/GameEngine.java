@@ -26,7 +26,14 @@ public class GameEngine {
         return giocatore;
     }
 
+    public boolean isGameOver() {
+        return !giocatore.getStatistiche().isVivo();
+    }
+
     public EsitoMovimento muovi(Direzione direzione) {
+        if (isGameOver()) {
+            return new EsitoMovimento(false, Optional.empty());
+        }
         Posizione candidata = giocatore.getPosizione()
                 .spostata(direzione.getDeltaRiga(), direzione.getDeltaColonna());
         if (!stanza.isTransitabile(candidata)) {
@@ -39,6 +46,9 @@ public class GameEngine {
     }
 
     public Optional<RisultatoInterazione> interagisci() {
+        if (isGameOver()) {
+            return Optional.empty();
+        }
         return stanza.getElementoIn(giocatore.getPosizione())
                 .map(elemento -> elemento.interagisci(giocatore));
     }

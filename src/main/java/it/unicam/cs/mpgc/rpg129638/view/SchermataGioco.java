@@ -44,10 +44,12 @@ public class SchermataGioco extends VBox {
     }
 
     private void gestisciTasto(KeyEvent evento) {
-        if (evento.getCode() == KeyCode.SPACE) {
-            interagisci();
-        } else {
-            muovi(evento.getCode());
+        if (!engine.isGameOver()) {
+            if (evento.getCode() == KeyCode.SPACE) {
+                interagisci();
+            } else {
+                muovi(evento.getCode());
+            }
         }
         evento.consume();
     }
@@ -56,8 +58,7 @@ public class SchermataGioco extends VBox {
         messaggio.setText(engine.interagisci()
                 .map(RisultatoInterazione::messaggio)
                 .orElse("Non c'è nulla con cui interagire qui."));
-        pannelloStatistiche.aggiorna();
-        vistaStanza.aggiorna();
+        aggiornaSchermata();
     }
 
     private void muovi(KeyCode tasto) {
@@ -76,8 +77,16 @@ public class SchermataGioco extends VBox {
             messaggio.setText(esito.evento()
                     .map(RisultatoInterazione::messaggio)
                     .orElse(" "));
-            pannelloStatistiche.aggiorna();
-            vistaStanza.aggiorna();
+            aggiornaSchermata();
+        }
+    }
+
+    private void aggiornaSchermata() {
+        pannelloStatistiche.aggiorna();
+        vistaStanza.aggiorna();
+        if (engine.isGameOver()) {
+            messaggio.setText(messaggio.getText() + "\nGAME OVER: "
+                    + engine.getGiocatore().getNome() + " è caduto nei sotterranei.");
         }
     }
 }
