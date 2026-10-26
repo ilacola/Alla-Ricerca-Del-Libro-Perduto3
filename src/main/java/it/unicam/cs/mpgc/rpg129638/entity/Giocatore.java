@@ -5,15 +5,21 @@ import it.unicam.cs.mpgc.rpg129638.model.Posizione;
 public class Giocatore {
 
     private final String nome;
+    private final Statistiche statistiche;
     private Posizione posizione;
 
     public Giocatore(String nome, Posizione posizioneIniziale) {
         this.nome = nome;
         this.posizione = posizioneIniziale;
+        this.statistiche = new Statistiche(100, 10, 10);
     }
 
     public String getNome() {
         return nome;
+    }
+
+    public Statistiche getStatistiche() {
+        return statistiche;
     }
 
     public Posizione getPosizione() {

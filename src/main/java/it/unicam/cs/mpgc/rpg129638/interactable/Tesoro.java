@@ -7,11 +7,15 @@ public class Tesoro implements Interagibile {
 
     private final String nome;
     private final Posizione posizione;
+    private final TipoBonus tipoBonus;
+    private final int valoreBonus;
     private boolean raccolto;
 
-    public Tesoro(String nome, Posizione posizione) {
+    public Tesoro(String nome, Posizione posizione, TipoBonus tipoBonus, int valoreBonus) {
         this.nome = nome;
         this.posizione = posizione;
+        this.tipoBonus = tipoBonus;
+        this.valoreBonus = valoreBonus;
         this.raccolto = false;
     }
 
@@ -26,6 +30,8 @@ public class Tesoro implements Interagibile {
             return new RisultatoInterazione("Hai già raccolto: " + nome + ".");
         }
         raccolto = true;
-        return new RisultatoInterazione("Hai trovato: " + nome + "!");
+        tipoBonus.applica(giocatore.getStatistiche(), valoreBonus);
+        return new RisultatoInterazione("Hai trovato: " + nome + "! "
+                + "+" + valoreBonus + " " + tipoBonus.getNome());
     }
 }

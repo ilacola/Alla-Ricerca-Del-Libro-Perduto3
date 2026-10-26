@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg129638;
 
 import it.unicam.cs.mpgc.rpg129638.controller.GameEngine;
 import it.unicam.cs.mpgc.rpg129638.entity.Giocatore;
+import it.unicam.cs.mpgc.rpg129638.interactable.TipoBonus;
 import it.unicam.cs.mpgc.rpg129638.interactable.Tesoro;
 import it.unicam.cs.mpgc.rpg129638.model.Posizione;
 import it.unicam.cs.mpgc.rpg129638.model.Stanza;
@@ -54,7 +55,8 @@ public class Main extends Application {
                 {m, m, m, m, m, m, m, m}
         };
         Stanza stanza = new Stanza("Una stanza di prova", mappa);
-        stanza.aggiungiElemento(new Tesoro("Pozione del Sapiente", new Posizione(3, 5)));
+        stanza.aggiungiElemento(new Tesoro(
+                "Pozione del Sapiente", new Posizione(3, 5), TipoBonus.INTUITO, 5));
         return stanza;
     }
 
