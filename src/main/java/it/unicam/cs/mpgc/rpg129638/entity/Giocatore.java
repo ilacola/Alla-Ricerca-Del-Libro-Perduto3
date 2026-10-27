@@ -8,10 +8,14 @@ public class Giocatore {
     private final Statistiche statistiche;
     private Posizione posizione;
 
-    public Giocatore(String nome, Posizione posizioneIniziale) {
+    public Giocatore(String nome, Posizione posizioneIniziale, Statistiche statistiche) {
         this.nome = nome;
         this.posizione = posizioneIniziale;
-        this.statistiche = new Statistiche(100, 10, 10);
+        this.statistiche = statistiche;
+    }
+
+    public Giocatore(String nome, Posizione posizioneIniziale) {
+        this(nome, posizioneIniziale, new Statistiche(100, 10, 10));
     }
 
     public String getNome() {

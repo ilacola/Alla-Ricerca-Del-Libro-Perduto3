@@ -66,4 +66,9 @@ public class Trappola implements Interagibile {
         statistiche.subisciDanno(danno);
         return new RisultatoInterazione(nome + ": " + messaggioFallimento + " -" + danno + " vita");
     }
+
+    @Override
+    public void ripristinaStato(int stato) {
+        scattata = stato == 1;
+    }
 }

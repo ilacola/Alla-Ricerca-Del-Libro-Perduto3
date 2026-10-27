@@ -58,4 +58,14 @@ public class Mostro implements Interagibile {
     public boolean bloccaUscita() {
         return true;
     }
+
+    @Override
+    public int getStato() {
+        return puntiVita;
+    }
+
+    @Override
+    public void ripristinaStato(int stato) {
+        puntiVita = Math.max(0, stato);
+    }
 }

@@ -26,4 +26,11 @@ public interface Interagibile {
     default Optional<RisultatoInterazione> alIngresso(Giocatore giocatore) {
         return Optional.empty();
     }
+
+    default int getStato() {
+        return isEsaurito() ? 1 : 0;
+    }
+
+    default void ripristinaStato(int stato) {
+    }
 }

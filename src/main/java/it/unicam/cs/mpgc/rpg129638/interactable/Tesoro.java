@@ -41,4 +41,9 @@ public class Tesoro implements Interagibile {
     public TipoElemento getTipo() {
         return TipoElemento.TESORO;
     }
+
+    @Override
+    public void ripristinaStato(int stato) {
+        raccolto = stato == 1;
+    }
 }

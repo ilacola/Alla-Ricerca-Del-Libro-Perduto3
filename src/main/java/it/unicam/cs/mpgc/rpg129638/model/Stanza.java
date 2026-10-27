@@ -3,6 +3,7 @@ package it.unicam.cs.mpgc.rpg129638.model;
 import it.unicam.cs.mpgc.rpg129638.interactable.Interagibile;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,5 +66,9 @@ public class Stanza {
     public boolean isCompletata() {
         return elementi.stream()
                 .noneMatch(elemento -> elemento.bloccaUscita() && !elemento.isEsaurito());
+    }
+
+    public List<Interagibile> getElementi() {
+        return Collections.unmodifiableList(elementi);
     }
 }

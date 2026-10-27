@@ -51,4 +51,16 @@ public class Mondo {
     public boolean isCompletato() {
         return completato;
     }
+
+    public List<Stanza> getStanze() {
+        return stanze;
+    }
+
+    public void ripristina(int indiceStanza, boolean completato) {
+        if (indiceStanza < 0 || indiceStanza >= stanze.size()) {
+            throw new IllegalArgumentException("Indice di stanza non valido: " + indiceStanza);
+        }
+        this.indiceCorrente = indiceStanza;
+        this.completato = completato;
+    }
 }

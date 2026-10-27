@@ -62,4 +62,10 @@ public class Statistiche {
     public int getEsperienza() {
         return esperienza;
     }
+
+    public Statistiche(int puntiVitaMax, int puntiVita, int forza, int intuito, int esperienza) {
+        this(puntiVitaMax, forza, intuito);
+        this.puntiVita = Math.max(0, Math.min(puntiVitaMax, puntiVita));
+        this.esperienza = esperienza;
+    }
 }
