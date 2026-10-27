@@ -1,4 +1,8 @@
 package it.unicam.cs.mpgc.rpg129638.data;
 
-public class CaricatoreMondo {
+import it.unicam.cs.mpgc.rpg129638.model.Mondo;
+
+public interface CaricatoreMondo {
+
+    Mondo carica(String nomeRisorsa);
 }
