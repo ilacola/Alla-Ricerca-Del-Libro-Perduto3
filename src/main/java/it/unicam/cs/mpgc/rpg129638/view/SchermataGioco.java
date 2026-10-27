@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg129638.view;
 
 import it.unicam.cs.mpgc.rpg129638.controller.EsitoMovimento;
 import it.unicam.cs.mpgc.rpg129638.controller.GameEngine;
+import it.unicam.cs.mpgc.rpg129638.data.PersistenzaException;
 import it.unicam.cs.mpgc.rpg129638.interactable.RisultatoInterazione;
 import it.unicam.cs.mpgc.rpg129638.model.Direzione;
 import javafx.application.Platform;
@@ -14,17 +15,19 @@ import javafx.scene.layout.VBox;
 public class SchermataGioco extends VBox {
 
     private static final String GUIDA =
-            "Frecce: muoviti   Spazio: interagisci   Esc: menu";
+            "Frecce: muoviti   Spazio: interagisci   S: salva   Esc: menu";
 
     private final GameEngine engine;
+    private final Runnable azioneSalva;
     private final Runnable azioneTornaAlMenu;
     private final VistaStanza vistaStanza;
     private final PannelloStatistiche pannelloStatistiche;
     private final Label titolo;
     private final Label messaggio;
 
-    public SchermataGioco(GameEngine engine, Runnable azioneTornaAlMenu) {
+    public SchermataGioco(GameEngine engine, Runnable azioneSalva, Runnable azioneTornaAlMenu) {
         this.engine = engine;
+        this.azioneSalva = azioneSalva;
         this.azioneTornaAlMenu = azioneTornaAlMenu;
         this.vistaStanza = new VistaStanza(engine);
         this.pannelloStatistiche = new PannelloStatistiche(engine.getGiocatore().getStatistiche());
@@ -49,13 +52,22 @@ public class SchermataGioco extends VBox {
         if (evento.getCode() == KeyCode.ESCAPE) {
             azioneTornaAlMenu.run();
         } else if (!engine.isPartitaTerminata()) {
-            if (evento.getCode() == KeyCode.SPACE) {
-                interagisci();
-            } else {
-                muovi(evento.getCode());
+            switch (evento.getCode()) {
+                case SPACE -> interagisci();
+                case S -> salva();
+                default -> muovi(evento.getCode());
             }
         }
         evento.consume();
+    }
+
+    private void salva() {
+        try {
+            azioneSalva.run();
+            messaggio.setText("Partita salvata.");
+        } catch (PersistenzaException e) {
+            messaggio.setText("Salvataggio non riuscito: " + e.getMessage());
+        }
     }
 
     private void interagisci() {
@@ -106,5 +118,3 @@ public class SchermataGioco extends VBox {
                 + engine.getMondo().getNumeroStanze());
     }
 }
-
-//guarda sinceramente quelle immagini le vorrei cambiare perchè non si addicono molto al contesto

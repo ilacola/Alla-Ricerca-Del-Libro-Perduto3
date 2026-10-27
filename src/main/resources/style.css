@@ -95,3 +95,7 @@
 .giocatore {
     -fx-background-image: url("images/giocatore.png");
 }
+
+.button:disabled {
+    -fx-opacity: 0.4;
+}

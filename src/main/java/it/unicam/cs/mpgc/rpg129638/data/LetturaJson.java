@@ -26,6 +26,10 @@ final class LetturaJson {
         return valore(oggetto, campo).getAsInt();
     }
 
+    static boolean booleano(JsonObject oggetto, String campo) {
+        return valore(oggetto, campo).getAsBoolean();
+    }
+
     static JsonObject oggetto(JsonObject oggetto, String campo) {
         return valore(oggetto, campo).getAsJsonObject();
     }
